@@ -1,21 +1,21 @@
 x-app-env: &app-env
-  APP_NAME: \Relaticle Dev 7i2
-  APP_ENV: \production
-  APP_KEY: \base64:bZzT7mxRFdjOQVNxkKcNhPU89rVqV+FEwOv9zN+N2kA=
-  APP_DEBUG: \false
-  APP_URL: \https://dev.7i2.com
-  DB_CONNECTION: \pgsql
-  DB_HOST: \postgres
-  DB_PORT: \5432
-  DB_DATABASE: \relaticle_dev
-  DB_USERNAME: \relaticle_dev
-  DB_PASSWORD: \WeysJ5vgI5weQBiKCJtqjvXF
-  REDIS_HOST: \redis
-  REDIS_PORT: \6379
-  CACHE_STORE: \redis
-  SESSION_DRIVER: \redis
-  QUEUE_CONNECTION: \redis
-  MAIL_MAILER: \log
+  APP_NAME: ${APP_NAME:-Relaticle Dev 7i2}
+  APP_ENV: ${APP_ENV:-production}
+  APP_KEY: ${APP_KEY}
+  APP_DEBUG: ${APP_DEBUG:-false}
+  APP_URL: ${APP_URL:-https://dev.7i2.com}
+  DB_CONNECTION: ${DB_CONNECTION:-pgsql}
+  DB_HOST: ${DB_HOST:-postgres}
+  DB_PORT: ${DB_PORT:-5432}
+  DB_DATABASE: ${DB_DATABASE:-relaticle_dev}
+  DB_USERNAME: ${DB_USERNAME:-relaticle_dev}
+  DB_PASSWORD: ${DB_PASSWORD}
+  REDIS_HOST: ${REDIS_HOST:-redis}
+  REDIS_PORT: ${REDIS_PORT:-6379}
+  CACHE_STORE: ${CACHE_STORE:-redis}
+  SESSION_DRIVER: ${SESSION_DRIVER:-redis}
+  QUEUE_CONNECTION: ${QUEUE_CONNECTION:-redis}
+  MAIL_MAILER: ${MAIL_MAILER:-log}
 
 services:
   app:
@@ -80,13 +80,13 @@ services:
     image: postgres:17-alpine
     restart: unless-stopped
     environment:
-      POSTGRES_DB: \relaticle_dev
-      POSTGRES_USER: \relaticle_dev
-      POSTGRES_PASSWORD: \WeysJ5vgI5weQBiKCJtqjvXF
+      POSTGRES_DB: ${DB_DATABASE:-relaticle_dev}
+      POSTGRES_USER: ${DB_USERNAME:-relaticle_dev}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
       - postgres:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U \relaticle_dev -d \relaticle_dev"]
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME:-relaticle_dev} -d ${DB_DATABASE:-relaticle_dev}"]
       interval: 10s
       timeout: 5s
       retries: 5
