@@ -2,7 +2,7 @@ x-app-env: &app-env
   APP_NAME: ${APP_NAME:-Relaticle Dev 7i2}
   APP_ENV: ${APP_ENV:-production}
   APP_KEY: ${APP_KEY}
-  APP_DEBUG: ${APP_DEBUG:-false}
+  APP_DEBUG: ${APP_DEBUG:-true}
   APP_URL: ${APP_URL:-https://dev.7i2.com}
   DB_CONNECTION: ${DB_CONNECTION:-pgsql}
   DB_HOST: ${DB_HOST:-postgres}
@@ -30,8 +30,7 @@ services:
       LETSENCRYPT_HOST: dev.7i2.com
       LETSENCRYPT_EMAIL: logs@helveticom.com
     volumes:
-      - code:/var/www/html
-      - storage:/var/www/html/storage/app
+      - storage:/var/www/html/storage
     depends_on:
       postgres:
         condition: service_healthy
@@ -51,7 +50,7 @@ services:
     environment:
       <<: *app-env
     volumes:
-      - storage:/var/www/html/storage/app
+      - storage:/var/www/html/storage
     depends_on:
       app:
         condition: service_healthy
@@ -70,7 +69,7 @@ services:
     environment:
       <<: *app-env
     volumes:
-      - storage:/var/www/html/storage/app
+      - storage:/var/www/html/storage
     depends_on:
       app:
         condition: service_healthy
@@ -117,5 +116,4 @@ networks:
 volumes:
   postgres:
   redis:
-  code:
   storage:
