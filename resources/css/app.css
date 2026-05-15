@@ -1,0 +1,12 @@
+/* Import Tailwind CSS 4 */
+@import "tailwindcss";
+
+/* Tailwind Typography Plugin */
+@plugin "@tailwindcss/typography";
+
+@import "./fonts.css";
+@import "./theme.css";
+
+[x-cloak] {
+    display: none !important;
+}
