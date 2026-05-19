@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources;
 
 use App\Enums\OfferingType;
+use App\Filament\Resources\OfferingResource\Pages\CreateOffering;
 use App\Filament\Resources\OfferingResource\Pages\ListOfferings;
 use App\Models\Offering;
 use Filament\Actions\ActionGroup;
@@ -132,6 +133,7 @@ final class OfferingResource extends Resource
     {
         return [
             'index' => ListOfferings::route('/'),
+            'create' => CreateOffering::route('/create'),
         ];
     }
 
