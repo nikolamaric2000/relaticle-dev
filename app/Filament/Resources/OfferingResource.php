@@ -90,7 +90,7 @@ final class OfferingResource extends Resource
                     ->searchable()
                     ->sortable()
                     ->toggleable()
-                    ->getStateUsing(fn (Offering $record): string => $record->created_by),
+                    ->getStateUsing(fn (Offering $record): string => $record->creator_id ? $record->creator->name : ''),
                 TextColumn::make('created_at')
                     ->label(__('filament/resources/offering.fields.created_at.label'))
                     ->dateTime()

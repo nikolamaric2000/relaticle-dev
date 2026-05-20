@@ -32,7 +32,7 @@ final class Offering extends Model
         'description',
         'price',
         'type',
-        'created_by',
+        'creator_id',
     ];
 
     /**
