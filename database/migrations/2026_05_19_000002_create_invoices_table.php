@@ -15,7 +15,7 @@ return new class extends Migration
             $table->foreignUlid('team_id')->constrained()->cascadeOnDelete();
             $table->string('invoiceable_id', 26);
             $table->string('invoiceable_type');
-            $table->string('invoice_number', 50);
+            $table->string('invoice_number', 50)->default('INV-2026-0001');
             $table->string('status', 20)->default('draft');
             $table->date('date');
             $table->date('due_date');
