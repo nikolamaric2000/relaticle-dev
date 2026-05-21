@@ -60,6 +60,11 @@ final class InvoiceResource extends Resource
                     ->schema([
                         Hidden::make('team_id')
                             ->default(auth()->user()?->currentTeam?->getKey()),
+                        TextInput::make('invoice_number')
+                            ->label(__('filament/resources/invoice.fields.invoice_number.label'))
+                            ->required()
+                            ->maxLength(50)
+                            ->columnSpan(4),
                         Select::make('invoiceable_type')
                             ->label(__('filament/resources/invoice.fields.client_type.label'))
                             ->options([
@@ -89,7 +94,7 @@ final class InvoiceResource extends Resource
                             ->required()
                             ->default(now()->addDays(30))
                             ->columnSpan(2),
-                    ]),
+                ]),
                 Section::make(__('filament/resources/invoice.sections.items'))
                     ->schema([
                         Repeater::make('items')
