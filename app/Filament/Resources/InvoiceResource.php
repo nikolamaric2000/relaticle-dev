@@ -62,7 +62,6 @@ final class InvoiceResource extends Resource
                             ->default(auth()->user()?->currentTeam?->getKey()),
                         TextInput::make('invoice_number')
                             ->label(__('filament/resources/invoice.fields.invoice_number.label'))
-                            ->required()
                             ->maxLength(50)
                             ->columnSpan(4),
                         Select::make('invoiceable_type')
